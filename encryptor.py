@@ -14,7 +14,7 @@ from base64 import b64encode, b64decode
 from Cryptodome.Cipher import AES
 
 
-def encrypt(password, text, create_file=False):
+def encrypt(password: str, text: str, create_file: bool = False) -> str:
     """
     Encryption Function.
 
@@ -41,7 +41,7 @@ def encrypt(password, text, create_file=False):
     return b64encode(file_out.getvalue()).decode()
 
 
-def decrypt(password, text):
+def decrypt(password: str, text: str) -> str:
     """
     Decryption Function.
 
@@ -64,7 +64,7 @@ def decrypt(password, text):
     return data.decode()
 
 
-def get_password():
+def get_password() -> str:
     """
     Get Password  Function.
 
