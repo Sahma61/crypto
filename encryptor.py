@@ -20,6 +20,12 @@ def encrypt(password: str, text: str, create_file: bool = False) -> str:
 
     encrypts plaintext using AES.
     a user supplied password is used as the key
+    args:
+        password: st - Password entered by the user
+        text: str - Plaintext to encrypt
+        create_file: bool - to check if file creation is needed
+    returns:
+        [str] - Encrypted text
     """
     for _ in range(16 - len(password) % 16):
         password = password + "0"
@@ -47,6 +53,11 @@ def decrypt(password: str, text: str) -> str:
 
     decrypts plaintext using AES.
     a user supplied password is used as the key
+    args:
+        password: str - Password entered by the user
+        text: str - Encrypted text to decrypt
+    returns:
+        [str] - Decrypted text
     """
     for _ in range(16 - len(password) % 16):
         password = password + "0"
@@ -70,6 +81,8 @@ def get_password() -> str:
 
     accepts a passowrd via user input and
     confirms it
+    returns:
+        [str] - Password entered by the user
     """
     while True:
         password1 = getpass.getpass("Enter the password:")
