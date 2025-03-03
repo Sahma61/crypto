@@ -47,7 +47,7 @@ def encrypt(password: str, text: str, create_file: bool = False) -> str:
     return b64encode(file_out.getvalue()).decode()
 
 
-def decrypt(password: str, text: str) -> str:
+def decrypt(password: str, text: str, read_file: bool = False) -> str:
     """
     Decryption Function.
 
@@ -62,7 +62,10 @@ def decrypt(password: str, text: str) -> str:
     for _ in range(16 - len(password) % 16):
         password = password + "0"
 
-    file_in = BytesIO(bytes(b64decode(text.encode())))
+    if read_file:
+        file_in = open("encrypted.bin", "rb")
+    else:
+        file_in = BytesIO(bytes(b64decode(text.encode())))
 
     key = password.encode()
     nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
